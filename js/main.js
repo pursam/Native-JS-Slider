@@ -1,61 +1,64 @@
-console.log('Sample JavaScript #5 HW #17');
+let createCarousel = function () {
 
-function createCarousel(slidesCount = 5) {
-  //Завожу все переменные из HTML документа какие могут понадобиться
-  let slides = document.querySelector('.slides');
+  //завожу все переменные которые понадобятся
   let slidesItem = document.querySelectorAll('.slides__item');
-  let controls = document.querySelector('.controls');
-  let controlItem = document.querySelectorAll('.control');
-  let nextbtn = document.querySelector('.controls__item.controls__next');
-  let prevbtn = document.querySelector('.controls__item.controls__prev');
-  let playbtn = document.querySelector('.controls__item.controls__pause');
+  let nextbtn = document.querySelector('.controls__item.controls__item--next');
+  let prevbtn = document.querySelector('.controls__item.controls__item--prev');
+  let playbtn = document.querySelector('.controls__item.controls__item--pause');
   let indicators = document.querySelector('.indicators');
   let indicatorItem = document.querySelectorAll('.indicators__item');
 
   let i = 0;
-  let isPause = false;
   let interval = 5000;
+  let isPause = false
 
-  slidesCount = slidesItem.length;
+  let slidesCount = slidesItem.length;
 
+  //функция переключения классов
   function move() {
     slidesItem[i].classList.toggle('active');
     indicatorItem[i].classList.toggle('active');
   }
 
+  //основная функция движения
   function slider() {
-    move();
-    i = (i + 1 + slidesCount) % slidesCount;
-    move();
-    console.log(`next ${i}`);
+    if (isPause === false) {
+      move();
+      i = (i + 1 + slidesCount) % slidesCount;
+      move();
+      console.log(`next ${i}`);
+
+    } else {
+      return 'paused'
+    }
   }
 
+  //интервал с идентификатором который можно будет выключить и включить снова что бы избежать повторного срабатывания slider при переходе на другие слайды
   let iteration = setInterval(slider, interval);
 
+  //функция для события кнопки next
   function next() {
     clearInterval(iteration);
-    slider()
+    slider();
     setTimeout(iteration, interval);
   }
 
+  //функция для события кнопки prev
   function prev() {
+    clearInterval(iteration);
     move();
     i = (i - 1 + slidesCount) % slidesCount;
     move();
+    setTimeout(iteration, interval);
     console.log(`prev ${i}`);
   }
 
-  //функция паузы для события на кпопку паузы
-  function playpause(e) {
+  //функция паузы для события на кпопку pause
+  function playPause(e = playbtn) {
     if (e.target) {
-      clearInterval(iteration);
-      playbtn.firstChild.classList.toggle('active')
-      console.log(`isPause=${isPause}`);
-
-    } else {
-      setTimeout(iteration, interval);
-      playbtn.firstChild.classList.toggle('active')
-      console.log(`isPause=${isPause}`);
+      isPause = isPause === true ? false : true;
+      playbtn.firstChild.classList.toggle('active');
+      console.log(`isPause = ${isPause}`);
     }
   }
 
@@ -63,12 +66,15 @@ function createCarousel(slidesCount = 5) {
   //события
   prevbtn.addEventListener('click', prev)
   nextbtn.addEventListener('click', next)
-  playbtn.addEventListener('click', playpause)
-  //событие перехода по индикаторам, после перехода по правильному слайду обнуляет i
-  indicators.addEventListener('click', function (e) {
-    if (e.target.tagName === 'SPAN') {
-      let number = e.target.getAttribute('data-slide-to');
+  playbtn.addEventListener('click', playPause)
 
+  //событие перехода по индикаторам
+  indicators.addEventListener('click', function (e) {
+    clearInterval(iteration);
+    if (e.target.tagName === 'SPAN') {
+
+      let number = parseInt(e.target.getAttribute('data-slide-to'));
+      console.log(number, 50);
       if (i != number) {
         move();
         i = number;
@@ -76,14 +82,9 @@ function createCarousel(slidesCount = 5) {
         console.log(`indicator ${i}`);
       }
     }
+    setTimeout(iteration, interval);
   })
-  // отладить код выше, привязать индикаторы и события на кнопки. Описать стили
-  // P.S короче некст и превойс подумать мб можно сократить внутри вместо кучи строк функцию мув, но сначала отладить.
-  // slidesItem[i + slidesCount % slidesCount + 1]; - вот эту строчку переделать в i = i + slidesCount %. ..... везде
 
 }
 
-createCarousel(4);
-
-
-//------------------------
+createCarousel()

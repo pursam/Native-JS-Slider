@@ -10,9 +10,8 @@
 </head>
 
 <body>
-  <h1 class="header">My JS Homework #5</h1>
+  <h1 class="header">Native JS Slider</h1>
   <div class="carousel">
-
     <ul class="slides">
       <li class="slides__item active"><a href="#"></a></li>
       <li class="slides__item"><a href="#"></a></li>
@@ -20,7 +19,6 @@
       <li class="slides__item"><a href="#"></a></li>
       <li class="slides__item"><a href="#"></a></li>
     </ul>
-
     <div class="indicators">
       <span class="indicators__item active" data-slide-to="0"></span>
       <span class="indicators__item" data-slide-to="1"></span>
@@ -28,186 +26,11 @@
       <span class="indicators__item" data-slide-to="3"></span>
       <span class="indicators__item" data-slide-to="4"></span>
     </div>
-
     <div class="controls">
-      <div class="controls__item controls__prev"><i class="fas fa-chevron-left"></i></div>
-      <div class="controls__item controls__next"><i class="fas fa-chevron-right"></i></div>
-      <div class="controls__item controls__pause"><i class="fas fa-play"></i></div>
+      <div class="controls__item controls__item--prev"><i class="fas fa-chevron-left"></i></div>
+      <div class="controls__item controls__item--next"><i class="fas fa-chevron-right"></i></div>
+      <div class="controls__item controls__item--pause"><i class="fas fa-play"></i></div>
     </div>
-    <style>
-      .carousel {
-        display: block;
-
-        margin: 0 auto;
-        width: 1300px;
-        height: 642px;
-        background-color: aqua;
-      }
-
-      .slides {
-        /* important */
-        position: relative;
-        width: 1300px;
-        height: 642px;
-        list-style: none;
-        margin: 0 auto;
-        padding: 0;
-        border: 10px solid gray;
-        background-color: black;
-      }
-
-      .slides__item {
-        position: absolute;
-        width: 1280px;
-        height: 622px;
-        display: inline-block;
-        padding: 0;
-        opacity: 0;
-        transition: opacity 1.5s;
-      }
-
-      .slides__item.active {
-        opacity: 1;
-      }
-
-      .slides__item:nth-of-type(1) {
-        background: url(assets/images/1.jpg), no-repeat;
-        background-size: cover;
-      }
-
-      .slides__item:nth-of-type(2) {
-        background: url(assets/images/2.jpg), no-repeat;
-        background-size: cover;
-      }
-
-      .slides__item:nth-of-type(3) {
-        background: url(assets/images/3.jpg), no-repeat;
-        background-size: cover;
-      }
-
-      .slides__item:nth-of-type(4) {
-        background: url(assets/images/4.jpg), no-repeat;
-        background-size: cover;
-      }
-
-      .slides__item:nth-of-type(5) {
-        background: url(assets/images/5.jpg), no-repeat;
-        background-size: cover;
-      }
-
-      .indicators {
-        /* important */
-        display: flex;
-        gap: 50px;
-
-        position: relative;
-        justify-content: center;
-        top: -50px;
-        align-items: center;
-        z-index: 9999;
-      }
-
-      .indicators__item {
-        width: 20px;
-        height: 20px;
-        border: 3px solid white;
-        border-radius: 50%;
-        opacity: 0.2;
-        transition: box-shadow 1s;
-        transition: opacity 1s;
-      }
-
-      .indicators__item.active {
-        color: white;
-        box-shadow: 0 0 10px black;
-        opacity: 0.7;
-      }
-
-      .controls {
-        /* important */
-        position: relative;
-
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 15% 70% 15%;
-
-        top: -652px;
-        width: 1280px;
-        height: 622px;
-        margin: 0 auto;
-      }
-
-      .controls__item {
-        display: inline-flex;
-        text-align: center;
-        height: 622px;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .controls__prev {
-        order: 1;
-      }
-
-      .controls__next {
-        order: 3;
-      }
-
-      .controls__pause {
-        order: 2;
-        display: inline-flex;
-      }
-
-      .fas {
-        border: solid white;
-        border-width: 0 4px 4px 0;
-        display: inline-block;
-        width: 3em;
-        height: 3em;
-        transition: border 1s;
-        transition: opacity 1s;
-        opacity: 0.2;
-      }
-
-      .controls__item:hover>.fas {
-        opacity: 0.7;
-      }
-
-      .fas.fa-play {
-        opacity: 0;
-        border-width: 0 4px 0 4px;
-        width: 2em;
-      }
-
-      .fas.fa-play.active {
-        width: 0;
-        height: 0;
-        border-right: 0;
-        border-top: 1.5em solid transparent;
-        border-bottom: 1.5em solid transparent;
-        border-left: 2em solid white;
-      }
-
-      .controls__item:hover>.fas.fa-play {
-        opacity: 0.7;
-      }
-
-      .fa-chevron-right {
-        transform: rotate(-45deg);
-        -webkit-transform: rotate(-45deg);
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .fa-chevron-left {
-        transform: rotate(135deg);
-        -webkit-transform: rotate(135deg);
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-      }
-    </style>
   </div>
 
   <p class="copy">&copy;Kozichev_Vladislav</p>
