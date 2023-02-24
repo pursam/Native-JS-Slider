@@ -9,4 +9,4 @@ It has:
 - Ability to pause slides
 - Transition to any slide of your choice
 
-# You can check out this work on githubpages at this link (https://pursam.github.io/Native-JS-Slider)[https://pursam.github.io/Native-JS-Slider]
+# You can check out this work on githubpages at this link https://pursam.github.io/Native-JS-Slider
